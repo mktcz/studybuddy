@@ -1,0 +1,42 @@
+name: studybuddy_workspace
+description: Study Buddy Flutter monorepo workspace.
+publish_to: none
+
+environment:
+  sdk: ^3.13.0
+
+workspace:
+  - mobile
+  - wearable
+  - packages/ui
+
+dev_dependencies:
+  melos: ^7.3.0
+
+melos:
+  scripts:
+    analyze:
+      run: dart run melos exec --fail-fast --concurrency=4 -- flutter analyze --no-pub
+      description: Analyze all Flutter packages in parallel.
+    test:
+      run: dart run melos exec --fail-fast --concurrency=4 -- flutter test --no-pub
+      description: Test all Flutter packages in parallel.
+    verify:
+      run: dart run melos run analyze && dart run melos run test && dart run melos run test:wear-jvm
+      description: Run the complete workspace analysis and test suite.
+    test:wear-jvm:
+      run: >-
+        dart run melos exec --fail-fast --scope=studybuddy_wear --
+        ./android/gradlew -p android :app:testDebugUnitTest
+      description: Run Wear OS Kotlin/JVM unit tests for capture lifecycle.
+    build:debug:
+      run: >-
+        bash -c 'set -euo pipefail;
+        test -f config.json || {
+          echo "config.json is missing. Copy config.example.json to config.json and fill in the Synheart values." >&2;
+          exit 1;
+        };
+        dart run melos exec --fail-fast --concurrency=2
+        --scope=studybuddy --scope=studybuddy_wear --
+        flutter build apk --debug --no-pub --dart-define-from-file=../config.json'
+      description: Build debug APKs for the mobile and Wear OS apps.

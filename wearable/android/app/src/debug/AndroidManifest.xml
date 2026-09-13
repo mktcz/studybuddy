@@ -1,0 +1,16 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application>
+        <receiver
+            android:name=".SyntheticInjectReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.studybuddy.app.DEBUG_INJECT" />
+                <action android:name="com.studybuddy.app.DEBUG_START" />
+                <action android:name="com.studybuddy.app.DEBUG_STOP" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

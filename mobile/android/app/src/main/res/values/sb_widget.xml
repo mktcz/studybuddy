@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="sb_canvas">#FFF5F2EA</color>
+    <color name="sb_ink">#FF181A17</color>
+    <color name="sb_muted">#FF6F7169</color>
+    <color name="sb_line">#FFD8D5CB</color>
+    <color name="sb_accent">#FF54735F</color>
+
+    <string name="widget_name">StudyBuddy activity</string>
+    <string name="widget_description">Today\'s focus, your streak, and a tap to start studying.</string>
+    <string name="widget_streak_label">day streak</string>
+    <string name="widget_grid_description">Recent study activity</string>
+
+    <style name="WidgetChip">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/widget_chip</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/sb_ink</item>
+    </style>
+</resources>
